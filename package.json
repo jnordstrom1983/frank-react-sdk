@@ -1,0 +1,36 @@
+{
+  "name": "charlee-react-sdk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "type": "module",
+  "files": [
+    "src/**/*"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-components": "tsc --build",
+    "build": "npm run build-components"
+  },
+  "exports": {
+    "./styles.css": "./dist/styles.css",
+    ".": "./dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "@babel/preset-typescript": "^7.21.4",
+    "@tsconfig/recommended": "^1.0.2",
+    "babel-loader": "^8.3.0",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "@types/react": "^18.0.33",
+    "marked": "^7.0.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
