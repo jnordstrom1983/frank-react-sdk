@@ -1,9 +1,9 @@
-export interface CharleeContentItem {
+export interface FrankContentItem {
     [key: string]: any;
     contentTypeId: string;
     contentId: string;
     folderId?: string;
-    languageId?: Charleelanguage
+    languageId?: Franklanguage
     modifiedDate?: Date;
     publishDate?: Date;
     data: Record<string, any>;
@@ -11,7 +11,7 @@ export interface CharleeContentItem {
   }
 
 
-export type Charleelanguage = | "aa"
+export type Franklanguage = | "aa"
   | "ab"
   | "ae"
   | "af"

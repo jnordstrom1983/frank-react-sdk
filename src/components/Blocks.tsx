@@ -7,23 +7,23 @@ export interface BlockSchema {
   data: any;
 }
 
-export interface CharleeBlocksProps {
+export interface FrankBlocksProps {
   blockContainer?: React.ElementType;
-  blockRenderer?: (block: BlockSchema, defaulRenderer: (block: BlockSchema, props : CharleeBlocksProps) => React.ReactNode) => React.ReactNode;
-  paragraphRenderer?: (block: BlockSchema, props : CharleeBlocksProps) => React.ReactNode;
-  headingRenderer?: (block: BlockSchema, props : CharleeBlocksProps) => React.ReactNode;
-  quoteRenderer?: (block: BlockSchema, props : CharleeBlocksProps) => React.ReactNode;
-  codeRenderer?: (block: BlockSchema, props : CharleeBlocksProps) => React.ReactNode;
-  listRenderer?: (block: BlockSchema, props : CharleeBlocksProps) => React.ReactNode;
-  referenceRenderer?: (block: BlockSchema, props : CharleeBlocksProps) => React.ReactNode;
-  tableRenderer?: (block: BlockSchema, props : CharleeBlocksProps) => React.ReactNode;
-  dividerRenderer?: (block: BlockSchema, props : CharleeBlocksProps) => React.ReactNode;
-  assetRenderer?: (block: BlockSchema, props : CharleeBlocksProps) => React.ReactNode;
+  blockRenderer?: (block: BlockSchema, defaulRenderer: (block: BlockSchema, props : FrankBlocksProps) => React.ReactNode) => React.ReactNode;
+  paragraphRenderer?: (block: BlockSchema, props : FrankBlocksProps) => React.ReactNode;
+  headingRenderer?: (block: BlockSchema, props : FrankBlocksProps) => React.ReactNode;
+  quoteRenderer?: (block: BlockSchema, props : FrankBlocksProps) => React.ReactNode;
+  codeRenderer?: (block: BlockSchema, props : FrankBlocksProps) => React.ReactNode;
+  listRenderer?: (block: BlockSchema, props : FrankBlocksProps) => React.ReactNode;
+  referenceRenderer?: (block: BlockSchema, props : FrankBlocksProps) => React.ReactNode;
+  tableRenderer?: (block: BlockSchema, props : FrankBlocksProps) => React.ReactNode;
+  dividerRenderer?: (block: BlockSchema, props : FrankBlocksProps) => React.ReactNode;
+  assetRenderer?: (block: BlockSchema, props : FrankBlocksProps) => React.ReactNode;
   renderMarkdown? : boolean
   value : BlockSchema[]
 }
 
-export async function Blocks(props: CharleeBlocksProps) {
+export async function Blocks(props: FrankBlocksProps) {
   
   if (!Array.isArray(props.value)) {
     return null;
@@ -50,7 +50,7 @@ export async function Blocks(props: CharleeBlocksProps) {
   });
 }
 
-function GetBlockRender(block: BlockSchema, props: CharleeBlocksProps): (block: BlockSchema, props : CharleeBlocksProps) => React.ReactNode {
+function GetBlockRender(block: BlockSchema, props: FrankBlocksProps): (block: BlockSchema, props : FrankBlocksProps) => React.ReactNode {
   switch (block.type) {
     case "paragraph":
       return props.paragraphRenderer || RenderPragraph;
@@ -75,13 +75,13 @@ function GetBlockRender(block: BlockSchema, props: CharleeBlocksProps): (block: 
 }
 
 
-function RenderPragraph(block: BlockSchema, props : CharleeBlocksProps): React.ReactNode {
+function RenderPragraph(block: BlockSchema, props : FrankBlocksProps): React.ReactNode {
   return (
     <Markdown as="p" key={block.id} className={block.variant} renderAsText={!props.renderMarkdown}>{block.data}</Markdown>
   );
 }
 
-function RenderHeading(block: BlockSchema, props : CharleeBlocksProps): React.ReactNode {
+function RenderHeading(block: BlockSchema, props : FrankBlocksProps): React.ReactNode {
   switch (block.variant) {
     case "large":
       return (
@@ -109,7 +109,7 @@ function RenderHeading(block: BlockSchema, props : CharleeBlocksProps): React.Re
   );
 }
 
-function RenderQuoute(block: BlockSchema, props : CharleeBlocksProps): React.ReactNode {
+function RenderQuoute(block: BlockSchema, props : FrankBlocksProps): React.ReactNode {
   return (
     <Markdown as="blockquote" id={block.id} key={block.id} renderAsText={!props.renderMarkdown}>
       {block.data}
@@ -117,7 +117,7 @@ function RenderQuoute(block: BlockSchema, props : CharleeBlocksProps): React.Rea
   );
 }
 
-function RenderCode(block: BlockSchema, props : CharleeBlocksProps): React.ReactNode {
+function RenderCode(block: BlockSchema, props : FrankBlocksProps): React.ReactNode {
   return (
     <Markdown as="code" id={block.id} key={block.id} renderAsText={!props.renderMarkdown}>
       {block.data}
@@ -125,7 +125,7 @@ function RenderCode(block: BlockSchema, props : CharleeBlocksProps): React.React
   );
 }
 
-function RenderList(block: BlockSchema, props : CharleeBlocksProps): React.ReactNode {
+function RenderList(block: BlockSchema, props : FrankBlocksProps): React.ReactNode {
   if (block.variant === "ordered") {
     return (
       <ol id={block.id} key={block.id}>
@@ -147,7 +147,7 @@ function RenderList(block: BlockSchema, props : CharleeBlocksProps): React.React
   return null;
 }
 
-function RenderReference(block: BlockSchema, props : CharleeBlocksProps): React.ReactNode {
+function RenderReference(block: BlockSchema, props : FrankBlocksProps): React.ReactNode {
   return (
     <div id={block.id} key={block.id}>
       {JSON.stringify(block.data)}
@@ -155,7 +155,7 @@ function RenderReference(block: BlockSchema, props : CharleeBlocksProps): React.
   );
 }
 
-function RenderTable(block: BlockSchema, props : CharleeBlocksProps): React.ReactNode {
+function RenderTable(block: BlockSchema, props : FrankBlocksProps): React.ReactNode {
   return (
     <table id={block.id} key={block.id}>
       <tbody>
@@ -171,10 +171,10 @@ function RenderTable(block: BlockSchema, props : CharleeBlocksProps): React.Reac
   );
 }
 
-function RenderDivider(block: BlockSchema, props : CharleeBlocksProps): React.ReactNode {
+function RenderDivider(block: BlockSchema, props : FrankBlocksProps): React.ReactNode {
   return <hr id={block.id} key={block.id}/>;
 }
-function RenderAsset(block: BlockSchema, props : CharleeBlocksProps): React.ReactNode {
+function RenderAsset(block: BlockSchema, props : FrankBlocksProps): React.ReactNode {
   if(block.data.type === "image"){
     return <img id={block.id} key={block.id} src={block.data.url}/>;
   }

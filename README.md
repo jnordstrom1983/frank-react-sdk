@@ -1,5 +1,5 @@
-# charlee-react-sdk
-This is a SDK to consume charlee-data from your React/NextJS app.
+# frank-react-sdk
+This is a SDK to consume frank-data from your React/NextJS app.
 
 ## Configuration
 The connection details can be configured in two ways, by environment variables or when initialising the client.
@@ -8,15 +8,15 @@ The connection details can be configured in two ways, by environment variables o
 Set the following environment variables to configure your connection details.
 | Variable  | Description  |
 |--|--|
-|CHARLEE_BASEURL  | URL to your Charlee installation |
-|CHARLEE_SPACEID  | ID of space to load information from |
-|CHARLEE_ACCESSKEY  | Content Access Key to use when using the client |
+|FRANK_BASEURL  | URL to your Frank installation |
+|FRANK_SPACEID  | ID of space to load information from |
+|FRANK_ACCESSKEY  | Content Access Key to use when using the client |
 
 
 #### When initialising the client
 ```
-const client = new CharleeClient({
-    baseUrl : "https://demo.charlee.app",
+const client = new FrankClient({
+    baseUrl : "https://demo.frank",
     spaceId : "s00000000",
     accessKey :  "..."
 });
@@ -30,7 +30,7 @@ const items = await client.GetItems(options)
 ```
 
 #### Options
-When querying data all parameters that can be used in the `Charlee Content API`can be used. 
+When querying data all parameters that can be used in the `Frank Content API`can be used. 
 | Option  | Description  |
 |--|--|
 |contentId  | Comma separated list of contentIds |
@@ -58,13 +58,13 @@ Same option as above
 
 
 ## Render content
-Content from Charlee can be rendered in your app just as any data. However, charlee-react-sdk comes with a few helper components that can render data for you.
+Content from Frank can be rendered in your app just as any data. However, frank-react-sdk comes with a few helper components that can render data for you.
 
 
 ### Markdown
 With the `<Markdown/>` component you can easily render markdown markup. Simply pass your markdown code as children to the component.
 ```
-import { Markdown } from  "charlee-react-sdk"
+import { Markdown } from  "frank-react-sdk"
 
 function render(){
    return <Markdown>hello *world*</MarkDown>
@@ -78,11 +78,11 @@ You can also specity what node type that the markdown should be rendered as by s
 
 
 ### Blocks data type
-If you have data stored in the Blocks data type from Charlee you can use the `<Blocks/>` object to convert the Blocks data into HTML and/or JSX.
+If you have data stored in the Blocks data type from Frank you can use the `<Blocks/>` object to convert the Blocks data into HTML and/or JSX.
 
 To render the content of a Blocks field simply use: 
 ```
-import { Blocks } from  "charlee-react-sdk"
+import { Blocks } from  "frank-react-sdk"
 
 function render(){
    return <Blocks value={item.data.field}/>

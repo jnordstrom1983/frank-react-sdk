@@ -1,19 +1,19 @@
-import { CharleeContentItem, Charleelanguage } from "../models/CharleeContentItem";
+import { FrankContentItem, Franklanguage } from "../models/FrankContentItem";
 
-export type CharleeClientOptions = {
+export type FrankClientOptions = {
   baseUrl?: string;
   spaceId?: string;
   accessKey?: string;
 };
 
-export type CharleeRequestOptions = {
+export type FrankRequestOptions = {
   contentId?: string;
   contentTypeId?: string;
   folderId? : string;
-  languageId?: Charleelanguage[];
+  languageId?: Franklanguage[];
   expand?: "true" | "false";
   expandLevels?: string;
-  expandFallbackLanguageId?: Charleelanguage;
+  expandFallbackLanguageId?: Franklanguage;
   query?: { [key: string]: any };
   project?: string;
   sort?: string | { [key: string]: any };
@@ -21,19 +21,19 @@ export type CharleeRequestOptions = {
   slug?: string;
 };
 
-export class CharleeClient {
+export class FrankClient {
   baseUrl: string;
   spaceId: string;
   accessKey : string;
 
 
-  constructor(options: CharleeClientOptions) {
-    this.baseUrl = options.baseUrl || process.env.CHARLEE_BASEURL || "";
-    this.spaceId = options.spaceId || process.env.CHARLEE_SPACEID || "";
-    this.accessKey = options.accessKey || process.env.CHARLEE_ACCESSKEY || "";
+  constructor(options: FrankClientOptions) {
+    this.baseUrl = options.baseUrl || process.env.FRANK_BASEURL || "";
+    this.spaceId = options.spaceId || process.env.FRANK_SPACEID || "";
+    this.accessKey = options.accessKey || process.env.FRANK_ACCESSKEY || "";
   }
 
-  async GetItem(options: CharleeRequestOptions): Promise<CharleeContentItem | null> {
+  async GetItem(options: FrankRequestOptions): Promise<FrankContentItem | null> {
     const items = await this.GetItems(options);
     if (items.length > 0) {
       return items[0];
@@ -41,7 +41,7 @@ export class CharleeClient {
     return null;
   }
 
-  async GetItems(options: CharleeRequestOptions): Promise<CharleeContentItem[]> {
+  async GetItems(options: FrankRequestOptions): Promise<FrankContentItem[]> {
     let params: { key: string; value: string }[] = [];
     if (options.contentId) params = [...params, { key: "contentId", value: options.contentId }];
     if (options.contentTypeId) params = [...params, { key: "contentTypeId", value: options.contentTypeId }];
@@ -70,9 +70,9 @@ export class CharleeClient {
     }
     
     //@ts-ignore
-    const result = await fetch(url, { headers,  next: { revalidate: 3600, tags: ["charlee"] } });
+    const result = await fetch(url, { headers,  next: { revalidate: 3600, tags: ["frank"] } });
     if (result.ok) {
-      const data = (await result.json()) as { items: CharleeContentItem[] };
+      const data = (await result.json()) as { items: FrankContentItem[] };
       return data.items;
     } else {
       return [];

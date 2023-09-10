@@ -1,11 +1,11 @@
-export class CharleeClient {
+export class FrankClient {
     baseUrl;
     spaceId;
     accessKey;
     constructor(options) {
-        this.baseUrl = options.baseUrl || process.env.CHARLEE_BASEURL || "";
-        this.spaceId = options.spaceId || process.env.CHARLEE_SPACEID || "";
-        this.accessKey = options.accessKey || process.env.CHARLEE_ACCESSKEY || "";
+        this.baseUrl = options.baseUrl || process.env.FRANK_BASEURL || "";
+        this.spaceId = options.spaceId || process.env.FRANK_SPACEID || "";
+        this.accessKey = options.accessKey || process.env.FRANK_ACCESSKEY || "";
     }
     async GetItem(options) {
         const items = await this.GetItems(options);
@@ -22,8 +22,10 @@ export class CharleeClient {
             params = [...params, { key: "contentTypeId", value: options.contentTypeId }];
         if (options.slug)
             params = [...params, { key: "slug", value: options.slug }];
+        if (options.folderId)
+            params = [...params, { key: "contentId", value: options.folderId }];
         if (options.languageId)
-            params = [...params, { key: "languageId", value: options.languageId }];
+            params = [...params, { key: "languageId", value: options.languageId.join(",") }];
         if (options.expand)
             params = [...params, { key: "expand", value: options.expand }];
         if (options.expandLevels)
@@ -50,7 +52,7 @@ export class CharleeClient {
             headers.append("Authorization", `Bearer ${this.accessKey}`);
         }
         //@ts-ignore
-        const result = await fetch(url, { headers, next: { revalidate: 3600, tags: ["charlee"] } });
+        const result = await fetch(url, { headers, next: { revalidate: 3600, tags: ["frank"] } });
         if (result.ok) {
             const data = (await result.json());
             return data.items;
@@ -60,4 +62,4 @@ export class CharleeClient {
         }
     }
 }
-//# sourceMappingURL=CharleeClient.js.map
+//# sourceMappingURL=FrankClient.js.map
