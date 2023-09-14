@@ -1,10 +1,10 @@
 import { FrankContentItem, Franklanguage } from "../models/FrankContentItem";
-export type FrankClientOptions = {
+export declare type FrankClientOptions = {
     baseUrl?: string;
     spaceId?: string;
     accessKey?: string;
 };
-export type FrankRequestOptions = {
+export declare type FrankRequestOptions = {
     contentId?: string;
     contentTypeId?: string;
     folderId?: string;
