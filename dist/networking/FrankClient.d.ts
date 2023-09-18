@@ -27,7 +27,7 @@ export declare class FrankClient {
     spaceId: string;
     accessKey: string;
     constructor(options: FrankClientOptions);
-    GetItem(options: FrankRequestOptions): Promise<FrankContentItem | null>;
-    GetItems(options: FrankRequestOptions): Promise<FrankContentItem[]>;
+    GetItem<T = Record<string, any>>(options: FrankRequestOptions): Promise<FrankContentItem<T> | null>;
+    GetItems<T = Record<string, any>>(options: FrankRequestOptions): Promise<FrankContentItem<T>[]>;
 }
 //# sourceMappingURL=FrankClient.d.ts.map

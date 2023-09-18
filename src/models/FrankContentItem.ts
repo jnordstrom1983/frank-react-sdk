@@ -1,4 +1,4 @@
-export interface FrankContentItem {
+export interface FrankContentItem<T = Record<string, any>> {
     [key: string]: any;
     contentTypeId: string;
     contentId: string;
@@ -6,7 +6,7 @@ export interface FrankContentItem {
     languageId?: Franklanguage
     modifiedDate?: Date;
     publishDate?: Date;
-    data: Record<string, any>;
+    data: T;
     slug? : string
   }
 

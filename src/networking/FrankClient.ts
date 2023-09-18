@@ -33,15 +33,15 @@ export class FrankClient {
     this.accessKey = options.accessKey || process.env.FRANK_ACCESSKEY || "";
   }
 
-  async GetItem(options: FrankRequestOptions): Promise<FrankContentItem | null> {
-    const items = await this.GetItems(options);
+  async GetItem<T = Record<string, any>>(options: FrankRequestOptions): Promise<FrankContentItem<T> | null> {
+    const items = await this.GetItems<T>(options);
     if (items.length > 0) {
       return items[0];
     }
     return null;
   }
 
-  async GetItems(options: FrankRequestOptions): Promise<FrankContentItem[]> {
+  async GetItems<T = Record<string, any>>(options: FrankRequestOptions): Promise<FrankContentItem<T>[]> {
     let params: { key: string; value: string }[] = [];
     if (options.contentId) params = [...params, { key: "contentId", value: options.contentId }];
     if (options.contentTypeId) params = [...params, { key: "contentTypeId", value: options.contentTypeId }];
@@ -72,7 +72,7 @@ export class FrankClient {
     //@ts-ignore
     const result = await fetch(url, { headers,  next: { revalidate: 3600, tags: ["frank"] } });
     if (result.ok) {
-      const data = (await result.json()) as { items: FrankContentItem[] };
+      const data = (await result.json()) as { items: FrankContentItem<T>[] };
       return data.items;
     } else {
       return [];
