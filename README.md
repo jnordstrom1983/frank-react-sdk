@@ -97,10 +97,10 @@ The Blocks component have various options that can be passed as props to the com
 | renderMarkdown | Set to true if text content should be handled as markdown |
 | blockContainer | What element type should be used as the container for all blocks, defaults to `div` |
 | blockRenderer | A function that will be used to render each block, should return ReactNode|
-| paragraphRenderer | A function that will be used to paragraph blocks, , should return ReactNode|
-| headingRenderer | A function that will be used to paragraph blocks, , should return ReactNode|
-| codeRenderer | A function that will be used to paragraph blocks, , should return ReactNode|
-| referenceRenderer | A function that will be used to paragraph blocks, , should return ReactNode|
-| tableRenderer | A function that will be used to paragraph blocks, , should return ReactNode|
-| dividerRenderer | A function that will be used to paragraph blocks, , should return ReactNode|
-| assetRenderer | A function that will be used to paragraph blocks, , should return ReactNode|
+| paragraphRenderer | A function that will be used to paragraph blocks, should return ReactNode|
+| headingRenderer | A function that will be used to heading blocks, should return ReactNode|
+| codeRenderer | A function that will be used to code blocks, should return ReactNode|
+| referenceRenderer | A function that will be used to referece blocks, should return ReactNode|
+| tableRenderer | A function that will be used to table blocks, should return ReactNode|
+| dividerRenderer | A function that will be used to divder blocks, should return ReactNode|
+| assetRenderer | A function that will be used to asset blocks, should return ReactNode|

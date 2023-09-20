@@ -1,6 +1,7 @@
 {
   "name": "frank-react-sdk",
-  "version": "1.0.6",
+  "version": "1.0.7",
+  "repository": "jnordstrom1983/frank-react-sdk",
   "description": "",
   "main": "dist/index.js",
   "type": "module",
